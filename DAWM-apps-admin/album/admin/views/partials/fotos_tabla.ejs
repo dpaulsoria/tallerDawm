@@ -33,16 +33,18 @@
             <td><%= idx %></td>
             <td><%= foto.descripcion %></td>
             <td><%= foto.url %></td>
+            <td><%- include("modal", {photo:foto}) -%></td>
             <td>
               <a
-                href="/photos/show-modal/<%= idx %>"
+                href="#"
                 class="settings"
                 title="Settings"
-                data-toggle="tooltip"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal_<%= foto.id %>"
                 ><i class="material-icons">&#xE8B8;</i></a
               >
               <a
-                href="/photos/delete/<%= idx %>"
+                href="/photos/delete/<%= foto.id %>"
                 class="delete"
                 title="Delete"
                 data-toggle="tooltip"
