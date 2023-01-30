@@ -3,7 +3,6 @@ var router = express.Router();
 
 const { Sequelize, Op } = require("sequelize");
 const Foto = require("../models").foto;
-const Etiqueta = require("../models").etiqueta;
 
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
@@ -35,13 +34,13 @@ router.get("/findAllByRate/json", function (req, res, next) {
 
   Foto.findAll({
     attributes: { exclude: ["updatedAt"] },
-    include: [
-      {
-        model: Etiqueta,
-        attributes: ["texto"],
-        through: { attributes: [] },
-      },
-    ],
+    // include: [
+    //   {
+    //     model: Foto,
+    //     attributes: ["texto"],
+    //     through: { attributes: [] },
+    //   },
+    // ],
     where: {
       calificacion: {
         [Op.between]: [lower, higher],
@@ -59,13 +58,13 @@ router.get("/findAllById/:id/json", function (req, res, next) {
 
   Foto.findAll({
     attributes: { exclude: ["updatedAt"] },
-    include: [
-      {
-        model: Etiqueta,
-        attributes: ["texto"],
-        through: { attributes: [] },
-      },
-    ],
+    // include: [
+    //   {
+    //     model: Foto,
+    //     attributes: ["texto"],
+    //     through: { attributes: [] },
+    //   },
+    // ],
     where: {
       [Op.and]: [{ id: id }],
     },

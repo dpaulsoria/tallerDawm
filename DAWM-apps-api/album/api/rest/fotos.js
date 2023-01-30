@@ -71,16 +71,17 @@ router.post("/save", upload.single("archivo"), function (req, res, next) {
     .catch((error) => res.status(400).send(error));
 });
 
-router.put("/update", function (req, res, next) {
-  let { id, titulo, descripcion, calificacion, ruta } = req.body;
+router.put("/update/:id", function (req, res, next) {
+  const { titulo, descripcion } = req.body;
+  const { id } = req.params;
 
   Foto.update(
     {
       titulo: titulo,
       descripcion: descripcion,
-      calificacion: parseFloat(calificacion),
-      ruta: ruta,
-      createdAt: new Date(),
+      // calificacion: parseFloat(calificacion),
+      // ruta: ruta,
+      // createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
