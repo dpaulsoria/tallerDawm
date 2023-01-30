@@ -47,16 +47,41 @@ router.get("/photos/delete/:id", async function (req, res, next) {
 //   }
 // });
 
-router.put("/photos/update/:id", async function (req, res, next) {
-  let { title, description, rate } = req.body;
+router.post("/photos/update/:id", async function (req, res, next) {
+  const { titulo, descripcion } = req.body;
+  const { id } = req.params;
+
+  const URL = "http://localhost:4444/rest/fotos/update/" + id;
+
+  let data = {
+    titulo: titulo,
+    descripcion: descripcion,
+  };
+
+  const config = {
+    proxy: {
+      host: "localhost",
+      port: 4444,
+    },
+  };
+
+  const response = await axios.put(URL, data, config);
+
+  if (response.status == "200" && response.statusText == "OK") {
+    res.redirect("/photos");
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.put("/photos/update/", async function (req, res, next) {
+  let { title, description } = req.params;
 
   const URL = "http://localhost:4444/rest/fotos/update/" + req.params.id;
 
   let data = {
     titulo: title,
     descripcion: description,
-    calificacion: rate,
-    ruta: "",
   };
 
   const config = {
