@@ -35,13 +35,17 @@
             <td><%= foto.url %></td>
             <td>
               <a
-                href="#"
+                href="/photos/show-modal/<%= idx %>"
                 class="settings"
                 title="Settings"
                 data-toggle="tooltip"
                 ><i class="material-icons">&#xE8B8;</i></a
               >
-              <a href="#" class="delete" title="Delete" data-toggle="tooltip"
+              <a
+                href="/photos/delete/<%= idx %>"
+                class="delete"
+                title="Delete"
+                data-toggle="tooltip"
                 ><i class="material-icons">&#xE5C9;</i></a
               >
             </td>
